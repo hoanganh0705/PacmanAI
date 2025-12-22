@@ -6,6 +6,7 @@ LEVEL_TO_ALGORITHM = {
     "LEVEL3": "Local Search", 
     "LEVEL4": "Minimax"       
     # 'LEVEL1': 'DFS'
+    # 'LEVEL2': 'A*'
     # 'LEVEL4': 'Expect'
     # 'LEVEL4': 'AlphaBetaPruning'
     
