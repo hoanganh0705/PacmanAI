@@ -5,17 +5,22 @@ import sys
 
 from constants import FPS, WIDTH, HEIGHT, BLUE, BLACK, WALL, FOOD, WHITE, YELLOW, MONSTER, IMAGE_GHOST, \
     IMAGE_PACMAN
+from constants import SIZE_WALL 
 
 clock = pygame.time.Clock()
-bg = pygame.image.load("images/home_bg.png")
-bg = pygame.transform.scale(bg, (WIDTH, HEIGHT))
+try:
+    bg = pygame.image.load("images/sucvat.jpeg")
+    bg = pygame.transform.scale(bg, (WIDTH, HEIGHT))
+except pygame.error as e:
+    print(f"Error loading menu background: {e}")
+    bg = pygame.Surface((WIDTH, HEIGHT))
+    bg.fill(BLUE)
 pygame.init()
 font = pygame.font.SysFont('Arial', 40)
 my_font = pygame.font.SysFont('Comic Sans MS', 70)
 
 _N = _M = 0
 __map = 0
-SIZE_WALL = 20
 
 
 class Button:
