@@ -5,11 +5,12 @@ from Algorithms.DFS import DFS
 from Algorithms.Expectimax import ExpectAgent
 from Algorithms.LocalSearch import local_search
 from Algorithms.Minimax import minimaxAgent
+import copy
 
 
 class SearchAgent:
     def __init__(self, _map, _food_Position, start_row, start_col, N, M):
-        self.map = _map.copy()
+        self.map = copy.deepcopy(_map)
         self.food_Position = _food_Position.copy()
         self.start_row = start_row
         self.start_col = start_col
