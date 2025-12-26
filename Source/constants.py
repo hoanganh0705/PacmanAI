@@ -1,15 +1,10 @@
 ALGORITHM: str = "MINIMAX"
 
 LEVEL_TO_ALGORITHM = {
-    "LEVEL1": "BFS",          
-    "LEVEL2": "BFS",          
-    "LEVEL3": "Local Search", 
-    "LEVEL4": "Minimax"       
-    # 'LEVEL1': 'DFS'
-    # 'LEVEL2': 'A*'
-    # 'LEVEL4': 'Expect'
-    # 'LEVEL4': 'AlphaBetaPruning'
-    
+    "LEVEL1": "BFS",
+    "LEVEL2": "BFS",
+    "LEVEL3": "Local Search",
+    "LEVEL4": "Minimax"
 }
 
 # DEFINE COLOR
@@ -36,18 +31,12 @@ MONSTER = 3
 # Setup screen
 WIDTH: int = 1200
 HEIGHT: int = 600
-FPS: int = 120
+FPS: int = 300
 
 MARGIN = {
     "TOP": 0,
     "LEFT": 0
 }
-
-# Game constants
-GAME_DELAY = 100
-ANIMATION_DURATION = SIZE_WALL
-FOOD_Y_OFFSET = SIZE_WALL // 4
-FOOD_X_OFFSET = SIZE_WALL // 4
 
 
 # IMAGE

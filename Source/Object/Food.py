@@ -1,6 +1,6 @@
 import pygame
 
-from constants import WHITE, SIZE_WALL, YELLOW, MARGIN, FOOD_Y_OFFSET, FOOD_X_OFFSET
+from constants import WHITE, SIZE_WALL, YELLOW, MARGIN
 
 
 class Food:
@@ -17,8 +17,8 @@ class Food:
         self.rect.top = row * SIZE_WALL + MARGIN["TOP"]
         self.rect.left = col * SIZE_WALL + MARGIN["LEFT"]
         if color == YELLOW:
-            self.rect.top += FOOD_Y_OFFSET
-            self.rect.left += FOOD_X_OFFSET
+            self.rect.top += SIZE_WALL // 2 - height // 2
+            self.rect.left += SIZE_WALL // 2 - width // 2
 
     def draw(self, screen):
         screen.blit(self.image, (self.rect.left, self.rect.top))

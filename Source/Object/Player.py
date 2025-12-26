@@ -1,16 +1,11 @@
 import pygame
 
-from constants import SIZE_WALL, MARGIN, YELLOW
+from constants import SIZE_WALL, MARGIN
 
 
 class Player:
     def __init__(self, row, col, fileImage):
-        try:
-            self.image = pygame.image.load(fileImage).convert_alpha()
-        except pygame.error as e:
-            print(f"Error loading image {fileImage}: {e}")
-            self.image = pygame.Surface([SIZE_WALL, SIZE_WALL])
-            self.image.fill(YELLOW) 
+        self.image = pygame.image.load(fileImage).convert_alpha()
         self.image = pygame.transform.scale(self.image, (SIZE_WALL, SIZE_WALL))
 
         self.rect = self.image.get_rect()
@@ -20,12 +15,7 @@ class Player:
         self.col = col
 
     def change_state(self, rotate, fileImage):
-        try:
-            self.image = pygame.image.load(fileImage).convert_alpha()
-        except pygame.error as e:
-            print(f"Error loading image {fileImage}: {e}")
-            self.image = pygame.Surface([SIZE_WALL, SIZE_WALL])
-            self.image.fill(YELLOW)
+        self.image = pygame.image.load(fileImage).convert_alpha()
         self.image = pygame.transform.scale(self.image, (SIZE_WALL, SIZE_WALL))
         self.image = pygame.transform.rotate(self.image, rotate)
 
