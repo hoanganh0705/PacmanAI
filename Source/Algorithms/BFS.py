@@ -15,7 +15,7 @@ def BFS(_map, _food_Position, start_row, start_col, N, M):
     visited[start_row][start_col] = True
     lt.append([start_row, start_col])
     while len(lt) > 0:
-        [row, col] = lt.pop(0) 
+        [row, col] = lt.pop(0)
 
         if [row, col] == [food_row, food_col]:
             chk = True
