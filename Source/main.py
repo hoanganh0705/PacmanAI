@@ -25,7 +25,6 @@ PacMan: Player
 Level = 1
 Map_name = ""
 
-# Initial Pygame --------------------------
 screen = pygame.display.set_mode((WIDTH, HEIGHT))
 pygame.display.set_caption('PacMan')
 clock = pygame.time.Clock()
@@ -35,7 +34,6 @@ my_font = pygame.font.SysFont('Comic Sans MS', 30)
 my_font_2 = pygame.font.SysFont('Comic Sans MS', 100)
 
 
-# ------------------------------------------
 
 def readMapInFile(map_name: str):
     f = open(map_name, "r")
@@ -60,16 +58,13 @@ def readMapInFile(map_name: str):
     f.close()
 
 
-# --------------------------------- MAIN ---------------------
 
 def check_Object(_map, row, col):
     if _map[row][col] == WALL:
         _wall.append(Wall(row, col, BLUE))
 
-    # hidden else later
     else:
         pass
-        # _road.append(Food(row, col, BLOCK_SIZE // 3, BLOCK_SIZE // 3, GREEN))
 
     if _map[row][col] == FOOD:
         _food.append(Food(row, col, BLOCK_SIZE, BLOCK_SIZE, YELLOW))
@@ -115,7 +110,6 @@ def Draw(_screen) -> None:
     screen.blit(text_surface, (0, 0))
 
 
-# 1: Random, 2: A*
 def generate_Ghost_new_position(_ghost, _type: int = 0) -> list[list[int]]:
     _ghost_new_position = []
     if _type == 1:
@@ -130,7 +124,6 @@ def generate_Ghost_new_position(_ghost, _type: int = 0) -> list[list[int]]:
 
             _ghost_new_position.append([new_row, new_col])
 
-    # update latest
     elif _type == 2:
         for idx in range(len(_ghost)):
             [start_row, start_col] = _ghost[idx].getRC()
@@ -189,7 +182,6 @@ def startGame() -> None:
     status = 0
     delay = 100
 
-    # ----------------- Run pygame
     while not done:
         for event in pygame.event.get():
             if event.type == pygame.QUIT:
@@ -198,11 +190,9 @@ def startGame() -> None:
 
         if delay > 0:
             delay -= 1
-        # handle move step by step
         if delay <= 0:
             if is_moving:
                 timer += 1
-                # Ghost move
                 if len(_ghost_new_position) > 0:
                     for idx in range(len(_ghost)):
                         [old_row_Gho, old_col_Gho] = _ghost[idx].getRC()
@@ -223,13 +213,11 @@ def startGame() -> None:
                             _map[old_row_Gho][old_col_Gho] = EMPTY
                             _map[new_row_Gho][new_col_Gho] = MONSTER
 
-                            # check touch Food
                             for index in range(len(_food)):
                                 [row_food, col_food] = _food[index].getRC()
                                 if row_food == old_row_Gho and col_food == old_col_Gho:
                                     _map[row_food][col_food] = FOOD
 
-                # Pacman move
                 if len(new_PacMan_Pos) > 0:
                     [old_row_Pac, old_col_Pac] = PacMan.getRC()
                     [new_row_Pac, new_col_Pac] = new_PacMan_Pos
@@ -248,7 +236,6 @@ def startGame() -> None:
                         PacMan.setRC(new_row_Pac, new_col_Pac)
                         Score -= 1
 
-                        # check touch Food
                         for idx in range(len(_food)):
                             [row_food, col_food] = _food[idx].getRC()
                             if row_food == new_row_Pac and col_food == new_col_Pac:
@@ -271,7 +258,6 @@ def startGame() -> None:
                 if timer >= SIZE_WALL:
                     is_moving = False
             else:
-                # _type = [0:don't move(default), 1:Random, 2:A*]
                 if Level == 3:
                     _ghost_new_position = generate_Ghost_new_position(_ghost, _type=1)
                 elif Level == 4:
@@ -286,11 +272,6 @@ def startGame() -> None:
                     continue
 
                 [row, col] = PacMan.getRC()
-
-                # cài đặt thuật toán ở đây, thay đổi ALGORITHM trong file constants.py
-                # thuật toán chỉ cần trả về vị trí mới theo format [new_row, new_col] cho biến new_PacMan_Pos
-                # VD: new_PacMan_Pos = [4, 5]
-                # thuật toán sẽ được cài đặt trong folder Algorithms
 
                 search = SearchAgent(_map, _food_Position, row, col, N, M)
                 if Level == 1 or Level == 2:
@@ -320,7 +301,6 @@ def startGame() -> None:
                         done = True
                         status = -1
 
-        # ------------------------------------------------------
 
         screen.fill(BLACK)
         Draw(screen)
