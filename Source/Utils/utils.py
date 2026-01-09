@@ -1,5 +1,12 @@
 from constants import FOOD, EMPTY, WALL
 
+'''''
+Mỗi phần tử là [d_row, d_col] dùng để tính ô lân cận:
+[0, 1] → phải (col + 1)
+[0, -1] → trái (col - 1)
+[1, 0] → xuống (row + 1)
+[-1, 0] → lên (row - 1)
+'''
 DDX = [[0, 1], [0, -1], [1, 0], [-1, 0]]
 
 
